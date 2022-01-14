@@ -12,4 +12,19 @@
     <h1>{{ post.name }}</h1>
   </div>
 </div>
+<div class="row">
+  <div class="col-xs-12">
+    <div
+    class="btn-group"
+    appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">Manage Posts <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer;" (click)="onEditPost()">Edit Post</a></li>
+        <li><a style="cursor: pointer;">Comment Post</a></li>
+        <li><a style="cursor: pointer;" (click)="onDeletePost()">Delete Post</a></li>
+      </ul>
+  </div>
+  </div>
+</div>
+<div class="row"><div class="col-xs-12">{{ post.description }}</div></div>
 

@@ -33,12 +33,12 @@ export class PostService {
     return this.posts[index];
   }
 
-  addRecipe(newPost: Post) {
+  addPost(newPost: Post) {
     this.posts.push(newPost);
     this.postsChanged.next(this.posts.slice());
   }
 
-  deleteRecipe(index: number) {
+  deletePost(index: number) {
     this.posts.splice(index, 1);
     this.postsChanged.next(this.posts.slice());
   }
