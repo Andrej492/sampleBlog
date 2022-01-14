@@ -4,7 +4,6 @@ import { Post } from "./post.model";
 
 @Injectable({providedIn: 'root'})
 export class PostService {
-
   postsChanged = new Subject<Post[]>();
 
   private posts: Post[] = [
@@ -40,6 +39,11 @@ export class PostService {
 
   deletePost(index: number) {
     this.posts.splice(index, 1);
+    this.postsChanged.next(this.posts.slice());
+  }
+
+  updatePost(index: number, post: Post) {
+    this.posts[index] = post;
     this.postsChanged.next(this.posts.slice());
   }
 }

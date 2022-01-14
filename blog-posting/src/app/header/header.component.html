@@ -1,32 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a routerLink="/" class="navbar-brand">Blog Posting</a>
-    </div>
+    <a routerLink="/" class="navbar-brand">Blog Posting</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="nav navbar-nav">
-        <li routerLinkActive="active">
-          <a routerLink="/posts">Posts</a>
-        </li>
-        <li routerLinkActive="active">
-          <a routerLink="/auth">Authenticate</a>
-        </li>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" routerLinkActive="active"><a class="nav-link active" routerLink="/posts">Posts</a></li>
+        <li class="nav-item" routerLinkActive="active"><a class="nav-link active" routerLink="/auth">Authenticate</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li >
-          <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
-        </li>
-        <li class="dropdown" appDropdown >
-          <a style="cursor: pointer;" class="dropdown-toggle" role="button"
-            >Manage <span class="caret"></span
-          ></a>
+        <li class="nav-item"><a style="cursor: pointer;" class="nav-link active" (click)="onLogout()">Logout</a></li>
+        <li class="nav-item dropdown" appDropdown>
+          <a style="cursor: pointer;" class="nav-link dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li>
-              <a style="cursor: pointer;" (click)="onSaveData()">Save Data</a>
-            </li>
-            <li>
-              <a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
-            </li>
+            <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
+            <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
           </ul>
         </li>
       </ul>

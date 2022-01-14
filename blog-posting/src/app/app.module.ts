@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SigninComponent } from './user/signin/signin.component';
 import { SignupComponent } from './user/signup/signup.component';
@@ -29,7 +31,9 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AmplifyUIAngularModule
+    AmplifyUIAngularModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
