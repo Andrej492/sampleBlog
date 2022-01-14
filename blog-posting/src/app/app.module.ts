@@ -15,7 +15,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostItemComponent } from './posts/post-list/post-item/post-item.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
-import { DropdownDirective } from './shared/dropdown.directective';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
