@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { Post } from "./post.model";
 
 @Injectable({providedIn: 'root'})
 export class PostService {
   postsChanged = new Subject<Post[]>();
+  startedEditing = new BehaviorSubject<number>(null);
 
   private posts: Post[] = [
     new Post(

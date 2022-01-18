@@ -1,33 +1,53 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-6 cold-sm-offset-1 col-md-offset-3 text-center">
-    <form class="text-center" (ngSubmit)="onSubmit(postForm)" #postForm="ngForm">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success" [disabled]="!postForm.valid">Save Post</button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!postForm.valid">Save Post</button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="onCancel()">Cancel</button>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="name" class="control-label">Title</label>
-            <input type="text" id="name" class="form-control text-center" name="name" ngModel required>
+            <label for="name" class="control-label"> Name </label>
+            <input
+              type="text"
+              id="name"
+              class="form-control text-center"
+              formControlName="name">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="description" class="control-label">Content</label>
-            <textarea type="text" id="description" class="form-control" rows="10" name="description" ngModel required></textarea>
+            <label for="description" class="control-label"> Description </label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              rows="10"
+              formControlName="description"></textarea>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="imagePath" class="control-label">Image URL</label>
-            <input type="text" id="imagePath" class="form-control" name="imagePath" ngModel #imagePath>
+            <label for="imagePath" class="control-label"> Image URL </label>
+            <input
+              type="text"
+              id="imagePath"
+              class="form-control"
+              formControlName="imagePath"
+              #imagePath>
           </div>
         </div>
       </div>

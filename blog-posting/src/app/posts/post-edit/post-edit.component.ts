@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 
@@ -9,40 +10,76 @@ import { PostService } from '../post.service';
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css']
 })
-export class PostEditComponent implements OnInit {
-  @ViewChild('form', {static: false }) form: NgForm;
+export class PostEditComponent implements OnInit, OnDestroy {
+  id: number;
   editMode = false;
-  editedItemIndex: number;
-  editedpost: Post;
+  postForm: FormGroup;
 
   constructor(private postService: PostService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.editedItemIndex = +params['id'];
-          if(this.editedItemIndex === null) {
-            this.editMode = true;
-            console.log(this.editMode);
-          }
-        }
-      )
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+      this.editMode = params['id'] != null;
+      this.initForm();
+    });
   }
 
-  onSubmit(form: NgForm) {
-    const newPost = new Post(form.value.name, form.value.descritpion, form.value.imagePath);
-    if(this.editMode) {
-      // Update recipe
+  onSubmit() {
+    if (this.editMode) {
+      this.postService.updatePost(this.id, this.postForm.value);
     } else {
-      this.postService.addPost(newPost);
+      this.postService.addPost(this.postForm.value);
     }
     this.onCancel();
   }
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route});
+  }
+
+  onClear() {
+    this.postForm.reset();
+    this.editMode = false;
+  }
+
+  ngOnDestroy(): void {
+      //this.editPostSubscription.unsubscribe();
+  }
+
+  private initForm() {
+    let postName = '';
+    let postImagePath = '';
+    let postDescription = '';
+    //let postComments = new FormArray([]);
+
+    if (this.editMode) {
+      const post = this.postService.getPost(this.id);
+      postName = post.name;
+      postImagePath = post.imagePath;
+      postDescription = post.description;
+      // if (post['comments']) {
+      //   for (let comment of post.comments) {
+      //     postComments.push(
+      //       new FormGroup({
+      //         name: new FormControl(comment.name, Validators.required),
+      //         amount: new FormControl(post.amount, [
+      //           Validators.required,
+      //           Validators.pattern(/^[1-9]+[0-9]*$/)
+      //         ])
+      //       })
+      //     );
+      //   }
+      // }
+    }
+
+    this.postForm = new FormGroup({
+      name: new FormControl(postName, Validators.required),
+      imagePath: new FormControl(postImagePath, Validators.required),
+      description: new FormControl(postDescription),
+      //comments: postComments
+    });
   }
 }

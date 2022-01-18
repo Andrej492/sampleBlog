@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
-
-import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -33,9 +32,9 @@ import { DropdownDirective } from './shared/dropdown.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AmplifyUIAngularModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

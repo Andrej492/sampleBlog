@@ -12,9 +12,10 @@ export class PostDetailComponent implements OnInit {
   post: Post;
   id: number;
 
-  constructor(private postService: PostService,
+  constructor(
+    private postService: PostService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit(): void {
     this.route.params
