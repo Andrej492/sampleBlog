@@ -17,6 +17,8 @@ import { CommentListComponent } from './comment-list/comment-list.component';
 import { CommentEditComponent } from './comment-list/comment-edit/comment-edit.component';
 import { AuthComponent } from './auth/auth.component';
 
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { AuthComponent } from './auth/auth.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AmplifyUIAngularModule /* configure app with AmplifyUIAngularModule */
   ],
   providers: [],
   bootstrap: [AppComponent]
