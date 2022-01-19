@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from '../post.model';
@@ -15,9 +15,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
   editMode = false;
   postForm: FormGroup;
 
-  constructor(private postService: PostService,
+  constructor(
+    private postService: PostService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -53,33 +54,55 @@ export class PostEditComponent implements OnInit, OnDestroy {
     let postName = '';
     let postImagePath = '';
     let postDescription = '';
-    //let postComments = new FormArray([]);
+    let postComments = new FormArray([]);
 
     if (this.editMode) {
       const post = this.postService.getPost(this.id);
       postName = post.name;
       postImagePath = post.imagePath;
       postDescription = post.description;
-      // if (post['comments']) {
-      //   for (let comment of post.comments) {
-      //     postComments.push(
-      //       new FormGroup({
-      //         name: new FormControl(comment.name, Validators.required),
-      //         amount: new FormControl(post.amount, [
-      //           Validators.required,
-      //           Validators.pattern(/^[1-9]+[0-9]*$/)
-      //         ])
-      //       })
-      //     );
-      //   }
-      // }
+      if (post['comments']) {
+        for (let comment of post.comments) {
+          postComments.push(
+            new FormGroup({
+              content: new FormControl(comment.content, Validators.required),
+              numberOfLikes: new FormControl(comment.numberOfLikes, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/)
+              ]),
+              numberOfDislikes: new FormControl(comment.numberOfDislikes, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/)
+              ])
+            })
+          );
+        }
+      }
     }
 
     this.postForm = new FormGroup({
-      name: new FormControl(postName, Validators.required),
-      imagePath: new FormControl(postImagePath, Validators.required),
-      description: new FormControl(postDescription),
-      //comments: postComments
+      'name': new FormControl(postName, Validators.required),
+      'imagePath': new FormControl(postImagePath, Validators.required),
+      'description': new FormControl(postDescription),
+      'comments': postComments
     });
+  }
+
+  onAddComment() {
+    (<FormArray>this.postForm.get('comments')).push(
+      new FormGroup({
+        'content': new FormControl(null, Validators.required),
+        'numberOfLikes': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+        'numberOfDislikes': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
+      })
+    )
+  }
+
+  onDeleteComment(index: number) {
+    (<FormArray>this.postForm.get('comments')).removeAt(index);
+  }
+
+  get controls() {
+    return (<FormArray>this.postForm.get('comments')).controls;
   }
 }

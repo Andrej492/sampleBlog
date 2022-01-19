@@ -35,3 +35,14 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        class="list-item"
+        *ngFor="let comment of post.comments">
+        {{ comment.content }} | {{ comment.numberOfLikes }} | {{ comment.numberOfDislikes }}
+      </li>
+    </ul>
+  </div>
+</div>
