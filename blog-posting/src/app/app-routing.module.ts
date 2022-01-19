@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
 import { PostsComponent } from './posts/posts.component';
-import { SigninComponent } from './user/signin/signin.component';
-import { SignupComponent } from './user/signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/posts', pathMatch: 'full'},
-  { path: 'signin', component: SigninComponent},
-  { path: 'signup', component: SignupComponent},
+  { path: 'auth', component: AuthComponent},
   { path: 'posts', component: PostsComponent,
     children: [
       { path: 'new', component: PostEditComponent },
