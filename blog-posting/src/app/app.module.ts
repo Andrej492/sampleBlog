@@ -17,6 +17,7 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { CommentEditComponent } from './comment-list/comment-edit/comment-edit.component';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CommentEditComponent } from './comment-list/comment-edit/comment-edit.c
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AmplifyUIAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]

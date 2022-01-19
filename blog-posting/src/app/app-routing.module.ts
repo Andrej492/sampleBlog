@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: ':id/edit', component: PostEditComponent}
     ]
   }
+  //{ path: '**', redirectTo: '/posts'}
 ];
 
 @NgModule({
