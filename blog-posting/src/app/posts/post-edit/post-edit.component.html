@@ -62,26 +62,16 @@
             class="row"
             *ngFor="let comment of controls; let i = index"
             [formGroupName]="i"
-            style="margin-top: 10px;">
+            style="margin-top: 10px;"
+            >
             <div class="col-xs-8">
               <textarea
                 name="content"
                 id="content"
                 cols="55"
                 rows="3"
-                formControlName="content"></textarea>
-            </div>
-            <div class="col-xs-1">
-              <input
-                type="number"
-                class="form-control"
-                formControlName="numberOfLikes">
-            </div>
-            <div class="col-xs-1">
-              <input
-                type="number"
-                class="form-control"
-                formControlName="numberOfDislikes">
+                formControlName="content"
+                ></textarea>
             </div>
             <div class="col-xs-1">
               <button

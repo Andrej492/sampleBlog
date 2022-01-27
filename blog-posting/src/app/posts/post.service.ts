@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
+import { CommentService } from "../comment-list/comment.service";
 import { Comment } from "../shared/comment.model";
 import { Post } from "./post.model";
 
@@ -14,8 +15,8 @@ export class PostService {
       'Post about tasty Schnitzel!',
       'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
       [
-        new Comment('First Comment', null, null),
-        new Comment('Second comment', null, null)
+        new Comment('First Comment'),
+        new Comment('Second comment')
       ]
     ),
     new Post(
@@ -23,8 +24,8 @@ export class PostService {
       'Post about big burger!',
       'https://upload.wikimedia.org/wikipedia/commons/b/be/Burger_King_Angus_Bacon_%26_Cheese_Steak_Burger.jpg',
       [
-        new Comment('Third Comment', null, null),
-        new Comment('Fourth comment', null, null)
+        new Comment('Third Comment'),
+        new Comment('Fourth comment')
       ]
     ),
     new Post(
@@ -32,11 +33,13 @@ export class PostService {
       'Post about big burger!',
       'https://upload.wikimedia.org/wikipedia/commons/b/be/Burger_King_Angus_Bacon_%26_Cheese_Steak_Burger.jpg',
       [
-        new Comment('Fifth Comment', null, null),
-        new Comment('Sixth comment', null, null)
+        new Comment('Fifth Comment'),
+        new Comment('Sixth comment')
       ]
     )
   ];
+
+  constructor(private commentService: CommentService) {}
 
   getPosts() {
     return this.posts.slice();
@@ -59,5 +62,9 @@ export class PostService {
   updatePost(index: number, post: Post) {
     this.posts[index] = post;
     this.postsChanged.next(this.posts.slice());
+  }
+
+  addComment(comment: Comment) {
+    this.commentService.addComment(comment);
   }
 }

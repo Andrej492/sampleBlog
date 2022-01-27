@@ -65,15 +65,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
         for (let comment of post.comments) {
           postComments.push(
             new FormGroup({
-              content: new FormControl(comment.content, Validators.required),
-              numberOfLikes: new FormControl(comment.numberOfLikes, [
-                Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/)
-              ]),
-              numberOfDislikes: new FormControl(comment.numberOfDislikes, [
-                Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/)
-              ])
+              content: new FormControl(comment.content, Validators.required)
             })
           );
         }
@@ -91,9 +83,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   onAddComment() {
     (<FormArray>this.postForm.get('comments')).push(
       new FormGroup({
-        'content': new FormControl(null, Validators.required),
-        'numberOfLikes': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
-        'numberOfDislikes': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
+        'content': new FormControl(null, Validators.required)
       })
     )
   }
