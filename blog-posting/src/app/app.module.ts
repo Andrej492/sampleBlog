@@ -7,8 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { SigninComponent } from './user/signin/signin.component';
-import { SignupComponent } from './user/signup/signup.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostItemComponent } from './posts/post-list/post-item/post-item.component';
@@ -18,13 +16,12 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { CommentEditComponent } from './comment-list/comment-edit/comment-edit.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SigninComponent,
-    SignupComponent,
     PostsComponent,
     PostListComponent,
     PostItemComponent,
@@ -32,7 +29,8 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
     PostDetailComponent,
     DropdownDirective,
     CommentListComponent,
-    CommentEditComponent
+    CommentEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +38,7 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AmplifyUIAngularModule
+    AmplifyUIAngularModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

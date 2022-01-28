@@ -20,17 +20,21 @@
 <hr>
 <div class="row">
   <div class="col-xs-12">
+    <div *ngIf="true">
+      <!-- TU treba da dodju svi buttoni a gore treba da se ispita da li ulogavan korisnik i ako jeste da li je to njegov post da moze da komentarise.. -->
+    </div>
     <div class="dropdown" appDropdown>
       <button
+        [disabled]="!isLoggedIn"
         type="button"
         class="btn btn-primary dropdown-toggle"
         data-bs-toggle="dropdown">
-        Manage Recipe
+        Manage Post
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onEditPost()">Edit Post</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer;">Comment Post</a></li>
-        <li><a class="dropdown-item" style="cursor: pointer;" (click)="onDeletePost()">Delete Post</a></li>
+        <li><button [disabled]="!isLoggedIn" class="dropdown-item" style="cursor: pointer;" (click)="onEditPost()">Edit Post</button></li>
+        <li><button [disabled]="!isLoggedIn" class="dropdown-item" style="cursor: pointer;" (click)="onAddComment()">Comment Post</button></li>
+        <li><button [disabled]="!isLoggedIn" class="dropdown-item" style="cursor: pointer;" (click)="onDeletePost()">Delete Post</button></li>
       </ul>
     </div>
   </div>

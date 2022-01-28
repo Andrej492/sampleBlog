@@ -8,6 +8,7 @@ import { Post } from "./post.model";
 export class PostService {
   postsChanged = new Subject<Post[]>();
   //startedEditing = new BehaviorSubject<number>(null);
+  isAuthenticated = new BehaviorSubject<boolean>(false);
 
   private posts: Post[] = [
     new Post(

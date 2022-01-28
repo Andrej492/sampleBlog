@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-xs-12">
-    <button type="button" class="btn btn-primary" (click)="onNewPost()">New Post</button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onNewPost()"
+      [disabled]="!isAllowed">New Post</button>
   </div>
 </div>
 <hr>
@@ -11,4 +15,11 @@
       [post]="postElement"
       [index]="i"></app-post-item>
   </div>
+</div>
+<hr>
+<div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="getAuthStatus()">Check Auth Status</button>
 </div>
