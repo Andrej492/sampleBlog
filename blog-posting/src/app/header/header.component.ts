@@ -25,15 +25,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe();
   }
 
-  async onLogout() {
-    try {
-      await Auth.signOut();
-    } catch(err) {
-      console.log('error signing out: ' + err);
-    }
-
-  }
-
   onSaveData() {
 
   }

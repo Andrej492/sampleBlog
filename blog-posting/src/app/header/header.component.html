@@ -7,7 +7,6 @@
         <li class="nav-item" routerLinkActive="active"><a class="nav-link active" data-toggle="tab" role="tab" routerLink="/auth">Auth</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="anotherTab" role="tablist">
-        <li class="nav-item"><button data-toggle="tab" role="tab" [disabled]="!isAuthenticated" style="cursor: pointer;" class="nav-link active" (click)="onLogout()">Logout</button></li>
         <div class="dropdown" appDropdown>
           <button
             [disabled]="!isAuthenticated"
