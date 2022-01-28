@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PostService } from '../posts/post.service';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe();
   }
 
-  onLogout() {
+  async onLogout() {
+    try {
+      await Auth.signOut();
+    } catch(err) {
+      console.log('error signing out: ' + err);
+    }
 
   }
 
